@@ -22,10 +22,11 @@ try {
 
 app.post("/user/generateToken", (req: Request, res: Response) => {
 
-    let jwtSecretKey = process.env.JWT_SECRET_KEY || "";
-    let data = {
+    const jwtSecretKey = process.env.JWT_SECRET_KEY || "";
+    const userId = req.get('userId');
+    const data = {
         time: Date(),
-        userId: 15
+        userId: userId
     };
 
     const token = jwt.sign(data, jwtSecretKey);
